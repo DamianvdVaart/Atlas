@@ -1,0 +1,27 @@
+DirectoryIndex
+RewriteEngine  on
+
+#Indexes uitzetten
+Options -Indexes
+
+#Cross site access toestaan
+Header set Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+
+#CMS rewrite
+RewriteRule ^cms/$ /cms/administrator [L]
+
+#Thoen en Nu
+
+DirectoryIndex index.php
+
+RewriteRule			^info/(.*).html catlisting.php?alias=$1 [QSA,L]
+RewriteRule			^(.*).html content.php?alias=$1 [QSA,L]
+
+#ErrorPages
+ErrorDocument 404 /error/404.php
+ErrorDocument 403 /error/403.php
+ErrorDocument 500 /error/500.php
+ErrorDocument 501 /error/501.php
+ErrorDocument 503 /error/503.php
+ErrorDocument 504 /error/504.php
